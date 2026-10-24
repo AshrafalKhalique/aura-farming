@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>অরা ফারমিং | পাবলিক কী ভাববে, ধরতে পারো?</title>
+<meta name="description" content="৫টা পরিস্থিতি, এক মিনিট। আন্দাজ করো, কোনটায় অরা বাড়ে আর কোনটায় কমে।">
+<meta property="og:title" content="অরা ফারমিং | পাবলিক কী ভাববে, ধরতে পারো?">
+<meta property="og:description" content="৫টা পরিস্থিতি, এক মিনিট। অরা বাড়ল না কমল — আন্দাজ করো, স্কোর শেয়ার করো, বন্ধুদের চ্যালেঞ্জ দাও।">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aura-farming-gamma.vercel.app/">
+<meta property="og:site_name" content="অরা ফারমিং">
+<meta property="og:locale" content="bn_BD">
+<meta property="og:image" content="https://aura-farming-gamma.vercel.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="অরা ফারমিং — পাবলিক কী ভাববে, ধরতে পারো?">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://aura-farming-gamma.vercel.app/og-image.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👑</text></svg>">
+<meta name="theme-color" content="#fff4d6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14111b" media="(prefers-color-scheme: dark)">
+<script>
+/* apply saved theme before paint, so the page never flashes the wrong colours */
+(function(){ try{ var t=localStorage.getItem('aura_theme'); if(t==='light'||t==='dark') document.documentElement.setAttribute('data-theme',t); }catch(e){} })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atma:wght@500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+<style>
+/* ---------- THEME TOKENS ---------- */
+:root{
+  --paper:#fff4d6; --dot:rgba(30,20,10,.13); --panel:#ffffff; --panel2:#fff9e9;
+  --ink:#16121c; --text:#16121c; --muted:#5e5666; --outline:#16121c; --shadow:#16121c;
+  --yellow:#ffd23f; --red:#ff4f5e; --blue:#3fa9ff; --pink:#ff74b8; --green:#25c27a; --purple:#8b5cf6;
+  --btn-text:#16121c; --bubble:#ffffff;
+  --head-bg:#16121c; --head-fg:#ffd23f; --head-sub:#ffffff;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#14111b; --dot:rgba(255,230,160,.07); --panel:#211c2c; --panel2:#2a2438;
+    --text:#f7f1e3; --muted:#b4abc4; --outline:#000000; --shadow:#ffd23f;
+    --bubble:#2f2840; --head-bg:#ffd23f; --head-fg:#16121c; --head-sub:#16121c;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#14111b; --dot:rgba(255,230,160,.07); --panel:#211c2c; --panel2:#2a2438;
+  --text:#f7f1e3; --muted:#b4abc4; --outline:#000000; --shadow:#ffd23f;
+  --bubble:#2f2840; --head-bg:#ffd23f; --head-fg:#16121c; --head-sub:#16121c;
+}
+
+/* ---------- BASE ---------- */
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{
+  background-color:var(--paper);
+  background-image:radial-gradient(var(--dot) 1.3px, transparent 1.6px);
+  background-size:13px 13px;
+  color:var(--text);font-family:'Hind Siliguri',system-ui,sans-serif;
+  min-height:100vh;min-height:100dvh;line-height:1.55;transition:background-color .3s,color .3s;
+}
+.app{max-width:440px;margin:0 auto;padding:16px 16px 26px;min-height:100dvh;display:flex;flex-direction:column}
+.screen{display:none;flex:1;flex-direction:column;animation:pop .35s cubic-bezier(.2,1.4,.4,1)}
+.screen.active{display:flex}
+@keyframes pop{from{opacity:0;transform:scale(.96) rotate(-.6deg)}to{opacity:1;transform:none}}
+.comic{font-family:'Atma','Hind Siliguri',sans-serif}
+
+/* comic panel */
+.panel{background:var(--panel);border:3px solid var(--outline);border-radius:8px;box-shadow:6px 6px 0 var(--shadow)}
+.tilt-l{transform:rotate(-1.2deg)} .tilt-r{transform:rotate(1deg)}
+
+/* buttons */
+button{font-family:'Atma','Hind Siliguri',sans-serif;cursor:pointer}
+.btn{width:100%;padding:13px 16px;border:3px solid var(--outline);border-radius:10px;
+  background:var(--yellow);color:var(--btn-text);font-size:20px;font-weight:700;
+  box-shadow:5px 5px 0 var(--shadow);transition:transform .08s,box-shadow .08s}
+.btn:active{transform:translate(4px,4px);box-shadow:1px 1px 0 var(--shadow)}
+.btn:disabled{filter:grayscale(.8);opacity:.7}
+.btn.alt{background:var(--panel);color:var(--text);font-size:17px}
+.btn.fb{background:#1877f2;color:#fff;font-size:17px}
+.btn.pink{background:var(--pink)}
+.row{display:flex;gap:12px}.row .btn{flex:1}
+.muted{color:var(--muted)}
+
+/* theme toggle */
+.topline{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px}
+.tag-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border:2.5px solid var(--outline);border-radius:99px;background:var(--panel);font-weight:700;font-size:14px;box-shadow:3px 3px 0 var(--shadow)}
+.theme-btn{width:46px;height:46px;border:3px solid var(--outline);border-radius:50%;background:var(--panel);font-size:22px;box-shadow:3px 3px 0 var(--shadow);display:grid;place-items:center;padding:0}
+.theme-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--shadow)}
+
+/* ---------- LANDING ---------- */
+.hero{text-align:center;margin:14px 0 18px;position:relative}
+.logo{font-family:'Atma',sans-serif;font-weight:700;font-size:58px;line-height:1.1;margin:6px 0 0;color:var(--yellow);
+  -webkit-text-stroke:3px var(--ink);paint-order:stroke fill;text-shadow:5px 5px 0 var(--red);transform:rotate(-2deg);display:inline-block}
+.tagline{display:inline-block;margin-top:14px;padding:8px 16px;background:var(--bubble);border:3px solid var(--outline);border-radius:22px;font-weight:600;font-size:17px;position:relative;box-shadow:4px 4px 0 var(--shadow)}
+.tagline::after{content:"";position:absolute;left:38px;bottom:-14px;border:9px solid transparent;border-top:12px solid var(--outline)}
+.tagline::before{content:"";position:absolute;left:41px;bottom:-8px;border:6px solid transparent;border-top:9px solid var(--bubble);z-index:1}
+.meter{margin:26px 4px 6px;height:16px;border:3px solid var(--outline);border-radius:99px;
+  background:linear-gradient(90deg,var(--red),#c9c2b4 50%,var(--yellow) 78%,var(--purple))}
+.meter-labels{display:flex;justify-content:space-between;font-size:13px;font-weight:600;color:var(--muted);margin:0 4px}
+.duel-banner{padding:12px 14px;margin-bottom:16px;text-align:center;font-weight:700;background:var(--pink);color:#16121c}
+.field{width:100%;padding:13px 14px;border:3px solid var(--outline);border-radius:10px;background:var(--panel);color:var(--text);font-size:16px;font-family:inherit;margin-bottom:14px;box-shadow:4px 4px 0 var(--shadow)}
+.field:focus{outline:3px solid var(--blue);outline-offset:2px}
+.strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}
+.strip .panel{padding:10px 8px;text-align:center;font-size:13px;font-weight:600;line-height:1.4;box-shadow:4px 4px 0 var(--shadow)}
+.strip .num{font-family:'Atma',sans-serif;font-size:13px;display:inline-block;background:var(--yellow);color:#16121c;border:2px solid var(--outline);border-radius:6px;padding:0 6px;margin-bottom:4px}
+.strip .ico{font-size:28px;display:block;line-height:1.2}
+footer{margin-top:auto;padding-top:22px;text-align:center;font-size:13px;color:var(--muted)}
+.credit{margin-top:6px;font-family:'Atma','Hind Siliguri',sans-serif;font-weight:700;font-size:15px;color:var(--text);letter-spacing:.2px}
+
+/* ---------- GAME ---------- */
+.topbar{display:flex;justify-content:space-between;align-items:center;margin:4px 0 10px}
+.progress{display:flex;gap:6px;margin-bottom:16px}
+.progress i{flex:1;height:10px;border:2.5px solid var(--outline);border-radius:4px;background:var(--panel)}
+.progress i.done{background:var(--yellow)} .progress i.now{background:var(--pink)}
+.scard{padding:22px 18px 20px;text-align:center;position:relative;transition:background-color .2s}
+.scard .chip{position:absolute;top:-16px;left:14px;background:var(--yellow);color:#16121c;border:3px solid var(--outline);border-radius:6px;padding:1px 10px;font-family:'Atma',sans-serif;font-weight:700;font-size:15px;transform:rotate(-3deg)}
+.scard .emo{font-size:64px;line-height:1.1}
+.scard p{font-size:21px;font-weight:600;margin:10px 0 0}
+.live{text-align:center;margin:22px 0 2px}
+.live .num{font-family:'Atma',sans-serif;font-size:48px;font-weight:700;line-height:1;-webkit-text-stroke:2px var(--ink);paint-order:stroke fill}
+.live .lbl{font-weight:700;font-size:16px;margin-top:6px}
+.pos{color:var(--yellow)}.neg{color:var(--red)}.neu{color:var(--panel)}
+.live .lbl.pos,.live .lbl.neg,.live .lbl.neu{color:var(--text)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:18px;margin:18px 0 6px;border:3px solid var(--outline);border-radius:99px;
+  background:linear-gradient(90deg,var(--red),#c9c2b4 50%,var(--yellow) 78%,var(--purple));outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:38px;height:38px;border-radius:50%;background:#fff;border:3px solid var(--outline);box-shadow:3px 3px 0 var(--outline)}
+input[type=range]::-moz-range-thumb{width:32px;height:32px;border-radius:50%;background:#fff;border:3px solid var(--outline)}
+input[type=range]:focus-visible{outline:3px solid var(--blue);outline-offset:4px}
+.ticks{display:flex;justify-content:space-between;font-size:13px;font-weight:600;color:var(--muted);margin-bottom:20px}
+
+.reveal{display:none;margin-top:16px}
+.reveal.show{display:block;animation:pop .35s cubic-bezier(.2,1.4,.4,1)}
+.rev-panel{padding:16px 14px 14px;position:relative}
+.track{position:relative;height:16px;margin:30px 4px 34px;border:3px solid var(--outline);border-radius:99px;
+  background:linear-gradient(90deg,var(--red),#c9c2b4 50%,var(--yellow) 78%,var(--purple))}
+.mk{position:absolute;top:50%;transform:translate(-50%,-50%);width:24px;height:24px;border-radius:50%;border:3px solid var(--outline);transition:left .75s cubic-bezier(.2,1.3,.4,1)}
+.mk span{position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:12px;font-weight:700;padding:0 6px;border:2px solid var(--outline);border-radius:6px;background:var(--panel);color:var(--text)}
+.mk.you{background:#fff}.mk.you span{bottom:26px}
+.mk.crowd{background:var(--green)}.mk.crowd span{top:26px}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.compare div{border:2.5px solid var(--outline);border-radius:8px;padding:8px;text-align:center;background:var(--panel2)}
+.compare small{display:block;color:var(--muted);font-size:13px;font-weight:600}
+.compare b{font-family:'Atma',sans-serif;font-size:24px}
+.burst-wrap{position:absolute;right:-14px;top:-44px;width:118px;height:118px;transform:rotate(8deg);animation:boom .45s cubic-bezier(.2,1.6,.4,1)}
+@keyframes boom{from{transform:scale(0) rotate(-30deg)}to{transform:scale(1) rotate(8deg)}}
+.burst-wrap svg{position:absolute;inset:0;width:100%;height:100%}
+.burst-wrap .sfx{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-family:'Atma',sans-serif;font-weight:700;font-size:22px;line-height:1;color:#16121c}
+.burst-wrap .sfx small{display:block;font-size:13px;margin-top:2px}
+.verdict{text-align:center;font-family:'Atma',sans-serif;font-weight:700;font-size:19px;margin:14px 0 6px}
+.speech{display:flex;gap:10px;align-items:flex-end;margin:10px 0 16px}
+.speech .who{font-size:38px;line-height:1}
+.bubble{position:relative;flex:1;background:var(--bubble);border:3px solid var(--outline);border-radius:18px;padding:10px 14px;font-weight:600;font-size:16px;box-shadow:4px 4px 0 var(--shadow)}
+.bubble::before{content:"";position:absolute;left:-15px;bottom:10px;border:8px solid transparent;border-right:13px solid var(--outline)}
+.bubble::after{content:"";position:absolute;left:-8px;bottom:12px;border:6px solid transparent;border-right:9px solid var(--bubble)}
+
+/* ---------- RESULT / SHARE CARD ---------- */
+.share-card{padding:14px;background:var(--paper);border:3px solid var(--outline);border-radius:10px;box-shadow:6px 6px 0 var(--shadow);display:grid;gap:12px}
+.sc-head{display:flex;justify-content:space-between;align-items:center;background:var(--head-bg);color:var(--head-fg);border-radius:6px;padding:6px 12px;font-family:'Atma',sans-serif;font-weight:700;font-size:20px}
+.sc-head span:last-child{color:var(--head-sub);font-size:13px;font-family:'Hind Siliguri',sans-serif;font-weight:600}
+.meme{position:relative;border:3px solid var(--outline);border-radius:6px;overflow:hidden;min-height:230px;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:10px;text-align:center}
+.meme.m0{background:radial-gradient(circle at 50% 55%,#fff6b0 0,#ffd23f 45%,#ff9f1c 100%)}
+.meme.m1{background:radial-gradient(circle at 50% 55%,#ffe0f0 0,#ff74b8 50%,#c2185b 100%)}
+.meme.m2{background:radial-gradient(circle at 50% 55%,#dff3ff 0,#3fa9ff 50%,#1565c0 100%)}
+.meme.m3{background:radial-gradient(circle at 50% 55%,#eeeeee 0,#a7a7b3 55%,#5d5d6b 100%)}
+.meme.m4{background:radial-gradient(circle at 50% 55%,#ffd9d9 0,#ff4f5e 50%,#7a0f1c 100%)}
+.meme-cap{font-family:'Atma','Hind Siliguri',sans-serif;font-weight:700;font-size:23px;line-height:1.25;color:#fff;
+  text-shadow:2px 0 0 #000,-2px 0 0 #000,0 2px 0 #000,0 -2px 0 #000,2px 2px 0 #000,-2px -2px 0 #000,2px -2px 0 #000,-2px 2px 0 #000,3px 4px 0 #000}
+.meme-scene{font-size:84px;line-height:1.1;margin:6px 0}
+.meme-scene img{max-width:100%;max-height:170px;border-radius:4px;display:block}
+.meme-tag{position:absolute;top:8px;right:-30px;transform:rotate(35deg);background:var(--ink);color:var(--yellow);font-size:11px;font-weight:700;padding:2px 34px}
+.sc-row{display:grid;grid-template-columns:1.15fr 1fr;gap:12px}
+.sc-persona{border:3px solid var(--outline);border-radius:6px;background:var(--panel);padding:10px;text-align:center}
+.sc-persona .emo{font-size:40px;line-height:1.1}
+.sc-persona h3{font-family:'Atma',sans-serif;font-size:21px;line-height:1.2;margin:2px 0 4px}
+.sc-persona p{font-size:12.5px;margin:0;color:var(--muted);line-height:1.4}
+.sc-score{border:3px solid var(--outline);border-radius:6px;background:var(--yellow);color:#16121c;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:8px;text-align:center}
+.sc-score small{font-weight:700;font-size:13px}
+.sc-score b{font-family:'Atma',sans-serif;font-size:40px;line-height:1.05}
+.sc-score .of{font-weight:700;font-size:13px}
+.sc-moments{display:grid;gap:8px}
+.sc-moments div{border:2.5px solid var(--outline);border-radius:6px;background:var(--panel);padding:7px 10px;font-size:13px;line-height:1.4}
+.sc-moments b{display:block;font-family:'Atma',sans-serif;font-size:14px}
+.sc-foot{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;font-size:12.5px;font-weight:600;color:var(--muted)}
+.sc-foot span:last-child{font-family:'Atma','Hind Siliguri',sans-serif;font-weight:700;color:var(--text);font-size:13px}
+.duel-result{text-align:center;font-family:'Atma',sans-serif;font-weight:700;font-size:19px;padding:12px;margin-top:16px;background:var(--pink);color:#16121c}
+.streak{text-align:center;margin-top:14px;font-size:14px;font-weight:600}
+.actions{display:grid;gap:12px;margin-top:16px}
+
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(140px);background:var(--yellow);color:#16121c;border:3px solid #16121c;box-shadow:4px 4px 0 #16121c;padding:10px 16px;border-radius:10px;font-weight:700;transition:transform .3s cubic-bezier(.2,1.4,.4,1);z-index:9;max-width:90vw;text-align:center;opacity:0;visibility:hidden}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1;visibility:visible}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ================= LANDING ================= -->
+  <section class="screen active" id="landing">
+    <div class="topline">
+      <span class="tag-pill" id="streakPill"></span>
+      <button class="theme-btn themeToggle" type="button"></button>
+    </div>
+    <div class="hero">
+      <h1 class="logo" data-t="brand.name"></h1><br>
+      <div class="tagline" data-t="landing.tagline"></div>
+      <div class="meter"></div>
+      <div class="meter-labels"><span>💀 −১০,০০০</span><span>০</span><span>+১০,০০০ 👑</span></div>
+    </div>
+    <div class="duel-banner panel tilt-r" id="duelBanner" hidden></div>
+    <input class="field" id="nameInput" maxlength="20" data-tp="landing.namePlaceholder" autocomplete="nickname">
+    <button class="btn" id="startBtn" data-t="landing.start"></button>
+    <div class="strip">
+      <div class="panel tilt-l"><span class="num">১</span><span class="ico">🎴</span><span data-t="landing.how1"></span></div>
+      <div class="panel"><span class="num">২</span><span class="ico">🎯</span><span data-t="landing.how2"></span></div>
+      <div class="panel tilt-r"><span class="num">৩</span><span class="ico">📲</span><span data-t="landing.how3"></span></div>
+    </div>
+    <footer><div data-t="landing.footer"></div><div class="credit" data-t="credit"></div></footer>
+  </section>
+
+  <!-- ================= GAME ================= -->
+  <section class="screen" id="game">
+    <div class="topbar">
+      <span class="tag-pill" id="roundLbl"></span>
+      <span class="tag-pill">🎯 <span id="scoreLbl">০</span></span>
+      <button class="theme-btn themeToggle" type="button"></button>
+    </div>
+    <div class="progress" id="progress"></div>
+
+    <div class="scard panel" id="scard">
+      <div class="chip" id="sChip"></div>
+      <div class="emo" id="sEmo"></div>
+      <p id="sText"></p>
+    </div>
+
+    <div id="inputPanel">
+      <div class="live">
+        <div class="num neu" id="liveNum">০</div>
+        <div class="lbl" id="liveLbl"></div>
+      </div>
+      <input type="range" id="slider" min="-10000" max="10000" step="100" value="0">
+      <div class="ticks"><span data-t="game.tickLeft"></span><span>০</span><span data-t="game.tickRight"></span></div>
+      <button class="btn" id="lockBtn" data-t="game.lock"></button>
+    </div>
+
+    <div class="reveal" id="reveal">
+      <div class="rev-panel panel">
+        <div class="burst-wrap" id="burst"></div>
+        <div class="track">
+          <div class="mk you" id="mkYou"><span data-t="reveal.you"></span></div>
+          <div class="mk crowd" id="mkCrowd"><span data-t="reveal.crowd"></span></div>
+        </div>
+        <div class="compare">
+          <div><small data-t="reveal.yourGuess"></small><b id="youVal">০</b></div>
+          <div><small data-t="reveal.crowdAvg"></small><b id="crowdVal">০</b></div>
+        </div>
+        <div class="verdict" id="verdict"></div>
+      </div>
+      <div class="speech"><span class="who">🗣️</span><div class="bubble" id="roast"></div></div>
+      <button class="btn" id="nextBtn"></button>
+    </div>
+  </section>
+
+  <!-- ================= RESULT ================= -->
+  <section class="screen" id="result">
+    <div class="topline" style="justify-content:flex-end"><button class="theme-btn themeToggle" type="button"></button></div>
+    <div class="share-card" id="shareCard">
+      <div class="sc-head"><span data-t="brand.name"></span><span id="rName"></span></div>
+      <div class="meme" id="meme">
+        <div class="meme-tag" data-t="result.memeTag"></div>
+        <div class="meme-cap" id="memeTop"></div>
+        <div class="meme-scene" id="memeScene"></div>
+        <div class="meme-cap" id="memeBottom"></div>
+      </div>
+      <div class="sc-row">
+        <div class="sc-persona">
+          <div class="emo" id="rEmo"></div>
+          <h3 id="rPersona"></h3>
+          <p id="rDesc"></p>
+        </div>
+        <div class="sc-score">
+          <small data-t="result.scoreLabel"></small>
+          <b id="rScore">০</b>
+          <span class="of" data-t="result.outOf"></span>
+        </div>
+      </div>
+      <div class="sc-moments">
+        <div><b data-t="result.best"></b><span id="rBest"></span></div>
+        <div><b data-t="result.worst"></b><span id="rWorst"></span></div>
+      </div>
+      <div class="sc-foot"><span id="rUrl"></span><span data-t="credit"></span></div>
+    </div>
+
+    <div class="duel-result panel tilt-l" id="duelResult" hidden></div>
+    <div class="streak muted" id="rStreak"></div>
+    <div class="actions">
+      <button class="btn" id="shareImgBtn" data-t="share.story"></button>
+      <button class="btn pink" id="challengeBtn" data-t="share.challenge"></button>
+      <div class="row">
+        <button class="btn fb" id="fbBtn" data-t="share.facebook"></button>
+        <button class="btn alt" id="replayBtn" data-t="share.replay"></button>
+      </div>
+    </div>
+    <footer><div class="credit" data-t="credit"></div></footer>
+  </section>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ================================================================
+   CONFIG
+   ================================================================ */
+const SITE_URL = 'aura-farming-gamma.vercel.app'; // ডিপ্লয়ের পর তোমার আসল ডোমেইন দাও
+const ROUNDS = 5;
+
+/* ================================================================
+   ALL TEXT — edit only this block to change any wording in the game.
+   {n}, {name}, {s}, {d}, {t}, {url}, {persona} are filled in automatically.
+   ================================================================ */
+/*TEXT-START*/
+const T = {
+  "brand.name": "অরা ফারমিং",
+  "meta.title": "অরা ফারমিং | পাবলিক কী ভাববে, ধরতে পারো?",
+  "landing.tagline": "পাবলিক কী ভাববে, তুমি কি ঠিকঠাক ধরতে পারো?",
+  "landing.streak": "🔥 টানা {n} দিন ধরে খেলছ!",
+  "landing.namePlaceholder": "তোমার নাম দাও (কার্ডে দেখাবে)",
+  "landing.start": "⚡ খেলা শুরু করি",
+  "landing.how1": "৫টা মজার পরিস্থিতি আসবে। স্লাইডার টেনে বলো, কোনটায় অরা কতটা বাড়বে বা কমবে।",
+  "landing.how2": "পাবলিকের আন্দাজের যত কাছাকাছি হবে, তত বেশি পয়েন্ট পাবে।",
+  "landing.how3": "শেষে পাবে নিজের অরা কার্ড। স্টোরিতে দাও, বন্ধুদেরও চ্যালেঞ্জ করো!",
+  "landing.footer": "বাংলাদেশে বানানো 🇧🇩 • পুরোটাই মজার ছলে",
+  "credit": "A মারা খাওয়া ট্রায়ো Production",
+  "duel.banner": "⚔️ {name} তোমাকে চ্যালেঞ্জ করেছে! ওর স্কোর {s}। একই ৫টা প্রশ্নে ওকে হারাতে পারবে?",
+  "duel.start": "⚔️ চ্যালেঞ্জ গ্রহণ!",
+  "duel.defaultName": "তোমার এক বন্ধু",
+  "duel.win": "🏆 জিতে গেছ! {name}-এর চেয়ে {d} পয়েন্ট বেশি পেয়েছ।",
+  "duel.lose": "😵 এবার {name} {d} পয়েন্টে জিতে গেছে। আরেকবার খেলে পাল্টা দাও!",
+  "duel.draw": "🤝 ড্র! দুজনের স্কোরই সমান!",
+  "game.round": "রাউন্ড {n}/{total}",
+  "game.situation": "পরিস্থিতি {n}",
+  "game.sliderAria": "অরা কতটা বাড়বে বা কমবে, বেছে নাও",
+  "game.tickLeft": "💀 অরা একদম শেষ",
+  "game.tickRight": "অরা একদম টপে 👑",
+  "game.lock": "🔒 এইটাই ফাইনাল",
+  "level.peak": "অরা একদম টপে 👑",
+  "level.up": "অরা বাড়ছে 🔥",
+  "level.slightUp": "একটু অরা বাড়ল ✨",
+  "level.neutral": "একই আছে 😐",
+  "level.slightDown": "একটু অস্বস্তিকর 😬",
+  "level.down": "অরা কমছে 📉",
+  "level.collapse": "অরা একদম শেষ 💀",
+  "reveal.you": "তুমি",
+  "reveal.crowd": "পাবলিক",
+  "reveal.yourGuess": "তোমার আন্দাজ",
+  "reveal.crowdAvg": "সবার গড় আন্দাজ",
+  "reveal.points": "+{n} পয়েন্ট",
+  "verdict.exact": "🎯 একদম ঠিক ধরেছ! পাবলিকের মনের কথাই বলে দিলে!",
+  "verdict.close": "👌 প্রায় ঠিকই ধরেছ!",
+  "verdict.ok": "🙂 মোটামুটি মিলে গেছে!",
+  "verdict.off": "📡 আন্দাজটা একটু এদিক-ওদিক হয়েছে!",
+  "verdict.far": "🛸 তুমি আর পাবলিক একদম উল্টো ভাবছ!",
+  "reveal.next": "পরের রাউন্ড →",
+  "reveal.finish": "রেজাল্ট দেখি →",
+  "result.brand": "✦ অরা ফারমিং ✦",
+  "result.outOf": "/ ৫,০০০",
+  "result.best": "🎯 সবচেয়ে ভালো আন্দাজ",
+  "result.worst": "📡 সবচেয়ে বেশি ভুল হয়েছে",
+  "result.bestDetail": "{t} (পার্থক্য মাত্র {d})",
+  "result.worstDetail": "{t} (পার্থক্য {d})",
+  "result.playToo": "তুমিও একবার খেলো 👉 {url}",
+  "result.streak": "🔥 টানা {n} দিন খেলেছ! কালও এসো, স্ট্রিকটা ভেঙো না!",
+  "share.story": "📸 স্টোরিতে দাও",
+  "share.challenge": "⚔️ বন্ধুকে চ্যালেঞ্জ করো (একই ৫টা প্রশ্ন)",
+  "share.facebook": "ফেসবুকে শেয়ার করো",
+  "share.replay": "🔁 আবার খেলি",
+  "share.generating": "⏳ কার্ড বানানো হচ্ছে…",
+  "share.storyText": "অরা ফারমিং-এ আমার রেজাল্ট \"{persona}\" 😎 তোমারটা কী আসে, দেখো: {url}",
+  "share.challengeTitle": "অরা ফারমিং চ্যালেঞ্জ",
+  "share.challengeText": "অরা ফারমিং-এ আমার স্কোর {s} 😎 একই ৫টা প্রশ্নে পারলে আমাকে হারিয়ে দেখাও!",
+  "toast.loading": "একটু দাঁড়াও, লোড হচ্ছে…",
+  "toast.downloaded": "ছবিটা ডাউনলোড হয়েছে! এবার স্টোরিতে দাও 📸",
+  "toast.error": "কার্ডটা বানানো গেল না। চাইলে স্ক্রিনশট নিয়ে নাও 🙏",
+  "toast.copied": "লিংক কপি হয়ে গেছে! এবার বন্ধুকে পাঠাও ⚔️",
+  "toast.copyPrompt": "লিংকটা কপি করে বন্ধুকে পাঠিয়ে দাও:",
+  "theme.toLight": "লাইট থিমে যাও",
+  "theme.toDark": "ডার্ক থিমে যাও",
+  "sfx.exact": "বুম!",
+  "sfx.close": "দারুণ!",
+  "sfx.ok": "হুম!",
+  "sfx.off": "ঠাস!",
+  "sfx.far": "ধপাস!",
+  "result.memeTag": "মিম টাইম",
+  "result.scoreLabel": "মোট স্কোর"
+};
+
+/* Personas: [minimum score, emoji, title, description] */
+const PERSONAS = [
+  [4500, "👑", "অরার বাদশা", "পাবলিক কী ভাববে, সেটা তুমি আগেই ধরে ফেলো! তোমার আন্দাজ প্রায় সব সময়ই মিলে যায়।"],
+  [3800, "🎬", "সিনেমার হিরো", "পরিস্থিতি বেশ ভালোই বোঝো। মাঝে মাঝে শুধু একটু বেশি নাটকীয় হয়ে যাও!"],
+  [3000, "📶", "দুই দাগ নেটওয়ার্ক", "মাঝেমধ্যে একদম ঠিক ধরো, আবার কখনো সিগন্যাল মিস হয়ে যায়!"],
+  [2000, "🤖", "ব্যাকগ্রাউন্ডের মানুষ", "খেলায় আছ ঠিকই, তবে পাবলিকের সঙ্গে তোমার আন্দাজ এখনো তেমন মিলছে না!"],
+  [0, "💀", "অরা একদম শেষ", "পাবলিক একদিকে, তোমার আন্দাজ আরেকদিকে! আরেকবার খেলে দেখো কী হয়।"]
+];
+
+/* Result memes — one list per persona, same order as PERSONAS. A random one is shown.
+   scene = big emoji picture; or add  img: "memes/your-image.jpg"  to use your own picture instead. */
+const MEMES = [
+  [{scene:"😎🍿", top:"পাবলিক এখনো ভাবছে…", bottom:"আর আমি উত্তর জানি"}, {scene:"🧠✨", top:"সবাই আন্দাজ করছে", bottom:"আমি মন পড়ছি"}],
+  [{scene:"🦸‍♂️🌧️", top:"প্রায় সবই মিলে গেছে", bottom:"এখন একটু হিরো হিরো লাগছে"}, {scene:"🎬🕶️", top:"এন্ট্রি স্লো-মোশনে", bottom:"ব্যাকগ্রাউন্ডে গান বাজছে"}],
+  [{scene:"📶🤳", top:"সিগন্যাল আছে", bottom:"কিন্তু কল যাচ্ছে না"}, {scene:"🙂🤏", top:"অর্ধেক মিলেছে", bottom:"বাকি অর্ধেক? থাক, বাদ দাও"}],
+  [{scene:"🚶‍♂️🎥", top:"গল্পটা চলছে", bottom:"আমি শুধু পাশ দিয়ে হাঁটছি"}, {scene:"🤖⏳", top:"সবাই বুঝে গেছে", bottom:"আমি এখনো লোড হচ্ছি…"}],
+  [{scene:"💀🔌", top:"আমার আন্দাজ", bottom:"লোডশেডিংয়ে চলে গেছে"}, {scene:"🫠🧭", top:"পাবলিক: উত্তরে", bottom:"আমি: সোজা দক্ষিণে"}]
+];
+
+/* Scenarios: id, e = emoji, a = crowd average (estimate for now), t = scenario, r = line shown after reveal */
+const S = [
+  {id:1, e:"😶", a:9200, t:"তর্কের মাঝে কিছু না বলে শুধু একবার তাকালে, আর সামনের জন চুপ হয়ে গেল।", r:"কিছু বলতেই হলো না, ওই এক চাহনিই যথেষ্ট!"},
+  {id:2, e:"📱", a:7800, t:"টেবিল থেকে ফোনটা পড়ে যাচ্ছিল, না তাকিয়েই খপ করে ধরে ফেললে।", r:"এই রিফ্লেক্স তো একদম সিনেমার হিরোর মতো!"},
+  {id:3, e:"🌧️", a:8000, t:"হঠাৎ ঝুম বৃষ্টি নামল। সবাই দৌড়াচ্ছে, আর তুমি দিব্যি হেঁটে যাচ্ছ।", r:"সবাই ছুটছে, আর তুমি নিজের মুডেই আছ!"},
+  {id:4, e:"🧠", a:5000, t:"তিন মাস আগে বন্ধু একটা ছোট্ট কথা বলেছিল। সেটা মনে রেখে আজ ওর খোঁজ নিলে।", r:"এত দিন আগের কথাও মনে রেখেছ? বন্ধু তো খুশি হবেই!"},
+  {id:5, e:"📵", a:5200, t:"কেউ তোমার সঙ্গে কথা বলতে বসতেই ফোনটা উল্টে রেখে দিলে।", r:"ফোন রেখে মন দিয়ে কথা শোনা, এটাও কিন্তু একটা ব্যাপার!"},
+  {id:6, e:"💸", a:9000, t:"বন্ধুদের সঙ্গে খাওয়া শেষ। কেউ বোঝার আগেই পুরো বিলটা দিয়ে দিলে।", r:"কাউকে কিছু না বলেই বিল দিয়ে দিলে? বাহ, কী চাল!"},
+  {id:7, e:"🚪", a:5500, t:"দাওয়াতে আড্ডা একদম জমে উঠেছে। তুমি কাউকে কিছু না বলেই বেরিয়ে গেলে।", r:"কোথায় গেলে, সেই রহস্য এখন সবাই মেলাবে!"},
+  {id:8, e:"🤝", a:7200, t:"গ্রুপ প্রজেক্ট নিয়ে সবাই তর্ক করছে। তুমি ঠান্ডা মাথায় এক কথায় ঝামেলা মিটিয়ে দিলে।", r:"সবাই যখন চেঁচাচ্ছিল, তুমি তখন শান্তভাবে সমাধান দিলে!"},
+  {id:9, e:"🕯️", a:6500, t:"লোডশেডিংয়ে গরমে সবাই হাঁসফাঁস করছে, আর তুমি চুপচাপ বই পড়ছ।", r:"কারেন্ট নেই, কিন্তু তোমার মাথা একদম ঠান্ডা!"},
+  {id:10, e:"🛺", a:6800, t:"রিকশাওয়ালা মামা ভাড়া চাইলেন ১০০ টাকা। তুমি কথা বলে ৬০ টাকায় রাজি করালে।", r:"দরদাম করার স্কিলটা তো ভালোই!"},
+  {id:11, e:"🏍️", a:6000, t:"সবার সামনে এক চেষ্টাতেই বাইকটা সুন্দর করে পার্ক করলে।", r:"একবারেই পার্কিং ঠিকঠাক! আশপাশের লোকজনও দেখল।"},
+  {id:12, e:"👵", a:5800, t:"ঈদের দাওয়াতে আত্মীয়রা শুরু করল, “রেজাল্ট কেমন? বিয়ে কবে?” তুমি শুধু হেসে সব সামলে নিলে।", r:"এত প্রশ্নের পরও হাসিমুখে আছ, এটাই তো বড় কথা!"},
+  {id:13, e:"👕", a:4500, t:"ফুটপাত থেকে কেনা একটা সাধারণ শার্ট পরে বেরিয়েছ। সারা দিন সবাই প্রশংসা করছে।", r:"শার্টের দাম কম, কিন্তু লুক একদম জমে গেছে!"},
+  {id:14, e:"💬", a:9500, t:"তোমার পোস্টে একজন কমেন্ট করল, “ভাই, অরা তো পুরাই আগুন!”", r:"এখন তো কমেন্ট সেকশন থেকেই অরার সার্টিফিকেট পেয়ে গেলে!"},
+  {id:15, e:"🦶", a:-5000, t:"একদম সমান রাস্তায় হাঁটতে গিয়ে হঠাৎ হোঁচট খেলে।", r:"রাস্তা ঠিকই ছিল, পা-টাই একটু ভুল করে ফেলেছে!"},
+  {id:16, e:"🫠", a:-9800, t:"ক্রাশের সামনে পরপর তিনবার এমন কিছু করলে, যেটায় নিজেই লজ্জা পেয়ে গেলে।", r:"একবার হলে মানা যেত, কিন্তু তিনবার!"},
+  {id:17, e:"👋", a:-8500, t:"কেউ তোমার পেছনের মানুষটাকে হাত নাড়ছিল। তুমি ভেবে বসলে তোমাকেই ডাকছে, তাই হাত নেড়ে দিলে।", r:"ওহ! হাতটা আসলে তোমার জন্য ছিল না!"},
+  {id:18, e:"☕", a:-7000, t:"ক্যাফেতে কফি খেয়ে বিল দিতে গেলে। বিকাশে ঢুকে দেখলে ব্যালেন্স নেই।", r:"কফি খাওয়া শেষ, এবার বিলটা দেবে কীভাবে?"},
+  {id:19, e:"🎒", a:-2500, t:"পুরো ক্যাম্পাস ঘুরে শেষে বুঝলে, এতক্ষণ তোমার ব্যাগের চেইন খোলা ছিল।", r:"এতক্ষণ কেউ বলল না যে ব্যাগটা খোলা!"},
+  {id:20, e:"😮‍💨", a:-6000, t:"খুব সিরিয়াস একটা কথা বলছ, এমন সময় নিজের থুতুতেই বিষম খেলে।", r:"গুরুত্বপূর্ণ কথার মাঝেই এই কাণ্ড!"},
+  {id:21, e:"🚪", a:-3500, t:"দরজায় বড় করে “টানুন” লেখা, অথচ তুমি দুবার ঠেলে দেখলে।", r:"লেখাটা চোখে পড়ল একটু দেরিতে, তাই না?"},
+  {id:22, e:"🍽️", a:-4000, t:"ওয়েটার বলল, “খাবারটা উপভোগ করবেন।” তুমি বলে ফেললে, “আপনিও!”", r:"উত্তরটা মুখ দিয়ে বের হয়েই বুঝলে কী বলে ফেলেছ!"},
+  {id:23, e:"✋", a:-6000, t:"হাই-ফাইভ দিতে হাত বাড়ালে, কেউ দিল না। শেষে চুল ঠিক করার ভান করলে।", r:"হাতটা যে হাই-ফাইভের জন্য উঠেছিল, সেটা সবাই বুঝে গেছে!"},
+  {id:24, e:"📧", a:-9000, t:"অফিসের ইমেইলে ভুল করে “Reply all” দিয়ে ফেললে।", r:"একজনকে যা বলার ছিল, পুরো অফিসই জেনে গেল!"},
+  {id:25, e:"🚌", a:-7500, t:"বাসে হঠাৎ এমন ঝাঁকুনি দিল যে পাশের অচেনা একজনের গায়ে প্রায় পড়েই যাচ্ছিলে।", r:"ঢাকার বাসে ভারসাম্য রাখা যে কত কঠিন!"},
+  {id:26, e:"👩‍🏫", a:-8800, t:"ক্লাসে সবার সামনে ভুল করে স্যারকে “আম্মু” বলে ডাকলে।", r:"বন্ধুরা এই ঘটনাটা সহজে ভুলবে না!"},
+  {id:27, e:"❤️", a:-9500, t:"ক্রাশের তিন বছর আগের ছবিতে স্ক্রল করতে করতে ভুল করে লাইক দিয়ে দিলে।", r:"এত পুরোনো ছবিতে লাইক! এবার কী বলবে?"},
+  {id:28, e:"👨‍👩‍👧", a:-7800, t:"বন্ধুকে পাঠাতে গিয়ে একটা মিম ভুল করে ফ্যামিলি গ্রুপে পাঠিয়ে দিলে।", r:"এবার পরিবারের সবাই মিমটার মানে জানতে চাইবে!"},
+  {id:29, e:"📲", a:-5500, t:"ফোনটা স্ক্রিনের দিক দিয়ে মাটিতে পড়ল। ভয়ে তুমি উল্টে দেখার সাহসই পাচ্ছ না।", r:"স্ক্রিনের কী হয়েছে জানো না, কিন্তু টেনশনটা আসল!"},
+  {id:30, e:"🏃", a:-6200, t:"ভারী ব্যাগ নিয়ে দৌড়ে বাস ধরতে গেলে, আর বাসটা ঠিক তোমার সামনেই চলে গেল।", r:"এত দৌড়েও বাসটা মিস! মন খারাপ হওয়ারই কথা।"},
+  {id:31, e:"💃", a:-3000, t:"ভিউ বাড়ানোর জন্য ব্যস্ত রাস্তার মাঝখানে দাঁড়িয়ে নাচের রিল বানাতে শুরু করলে।", r:"ভিউ আসুক বা না আসুক, রাস্তায় অন্যদের কিন্তু সমস্যা হচ্ছে!"},
+  {id:32, e:"🍘", a:2500, t:"শ্বশুরবাড়িতে গিয়ে এক বসায় ১২টা পিঠা খেয়ে ফেললে।", r:"পিঠা ভালো লেগেছে বোঝাই যাচ্ছে, কিন্তু পেট ঠিক আছে তো?"},
+  {id:33, e:"🎤", a:3500, t:"বিয়েবাড়িতে কেউ না বলতেই মাইক হাতে গান ধরলে। মজার ব্যাপার, গানটা বেশ ভালোই হলো!", r:"না বলে মাইক ধরেছিলে ঠিকই, কিন্তু গেয়ে সবাইকে তাক লাগিয়ে দিলে!"},
+  {id:34, e:"🕶️", a:-2000, t:"রাত ১০টায় ঘরের মধ্যে সানগ্লাস পরে বসে আছ।", r:"স্টাইল করতে গিয়ে একটু বাড়াবাড়ি হয়ে গেল না?"}
+];
+/*TEXT-END*/
+
+/* ================================================================
+   HELPERS
+   ================================================================ */
+const $ = id => document.getElementById(id);
+const D = '০১২৩৪৫৬৭৮৯';
+const bnDigits = s => String(s).replace(/\d/g, d => D[d]);
+function bn(n, signed){
+  const abs = bnDigits(Math.abs(Math.round(n)).toLocaleString('en-US'));
+  if (n < 0) return '−' + abs;
+  return (signed && n > 0 ? '+' : '') + abs;
+}
+function tx(key, vars){
+  return (T[key] || key).replace(/\{(\w+)\}/g, (m, k) => vars && k in vars ? vars[k] : m);
+}
+function applyText(){
+  document.querySelectorAll('[data-t]').forEach(el => el.textContent = tx(el.dataset.t));
+  document.querySelectorAll('[data-tp]').forEach(el => el.placeholder = tx(el.dataset.tp));
+  document.title = tx('meta.title');
+  $('slider').setAttribute('aria-label', tx('game.sliderAria'));
+}
+const store = {
+  get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } },
+  set(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+};
+function shuffle(a){ a=[...a]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
+function toast(msg){ const t=$('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('show'),2600); }
+function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active', s.id===id)); window.scrollTo(0,0); }
+const short = (t,n=48) => t.length>n ? t.slice(0,n-1)+'…' : t;
+
+/* comic starburst (SVG) */
+function burstSVG(fill){
+  const pts=[], spikes=14, R=58, r=40, cx=60, cy=60;
+  for(let i=0;i<spikes*2;i++){
+    const ang=Math.PI*i/spikes - Math.PI/2, rad=i%2?r:R;
+    pts.push((cx+rad*Math.cos(ang)).toFixed(1)+','+(cy+rad*Math.sin(ang)).toFixed(1));
+  }
+  return `<svg viewBox="0 0 120 120" aria-hidden="true"><polygon points="${pts.join(' ')}" fill="${fill}" stroke="#16121c" stroke-width="4" stroke-linejoin="round"/></svg>`;
+}
+
+/* ================================================================
+   THEME (light / dark)
+   ================================================================ */
+function currentTheme(){
+  const t = document.documentElement.getAttribute('data-theme');
+  if (t) return t;
+  return window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+function renderThemeButtons(){
+  const dark = currentTheme()==='dark';
+  document.querySelectorAll('.themeToggle').forEach(b=>{
+    b.textContent = dark ? '☀️' : '🌙';
+    b.setAttribute('aria-label', dark ? tx('theme.toLight') : tx('theme.toDark'));
+    b.title = b.getAttribute('aria-label');
+  });
+}
+function toggleTheme(){
+  const next = currentTheme()==='dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  store.set('aura_theme', next);
+  renderThemeButtons();
+}
+document.querySelectorAll('.themeToggle').forEach(b=>b.addEventListener('click', toggleTheme));
+
+applyText();
+renderThemeButtons();
+
+/* ================================================================
+   STATE
+   ================================================================ */
+let deck=[], idx=0, guesses=[], points=[], playerName='', duel=null;
+
+(function readDuel(){
+  const p = new URLSearchParams(location.search);
+  const d = p.get('d'); if(!d) return;
+  const ids = d.split('-').map(Number).filter(id => S.some(s=>s.id===id));
+  if (ids.length !== ROUNDS) return;
+  const sc = Math.max(0, Math.min(5000, parseInt(p.get('s'),10)||0));
+  const nm = (p.get('n') || tx('duel.defaultName')).slice(0,20);
+  duel = {ids, s:sc, n:nm};
+  const b = $('duelBanner');
+  b.textContent = tx('duel.banner', {name:nm, s:bn(sc)});
+  b.hidden = false;
+  $('startBtn').textContent = tx('duel.start');
+})();
+
+function dayStr(d){ return d.toLocaleDateString('en-CA'); }
+function streakNow(){ return parseInt(store.get('aura_streak')||'0',10); }
+function renderStreak(){ $('streakPill').textContent = tx('landing.streak', {n:bn(streakNow())}); }
+function bumpStreak(){
+  const today = dayStr(new Date());
+  const y = new Date(); y.setDate(y.getDate()-1);
+  const last = store.get('aura_last');
+  let s = streakNow();
+  if (last === today) return s;
+  s = (last === dayStr(y)) ? s+1 : 1;
+  store.set('aura_streak', s); store.set('aura_last', today);
+  return s;
+}
+renderStreak();
+$('nameInput').value = store.get('aura_name') || '';
+
+/* ================================================================
+   GAME FLOW
+   ================================================================ */
+function buildDeck(){
+  if (duel) return duel.ids.map(id => S.find(s=>s.id===id));
+  const pos = shuffle(S.filter(s=>s.a>0)), neg = shuffle(S.filter(s=>s.a<0));
+  const picked = [pos[0],pos[1],neg[0],neg[1]];
+  const rest = shuffle(S.filter(s=>!picked.includes(s)));
+  return shuffle([...picked, rest[0]]);
+}
+function start(){
+  playerName = $('nameInput').value.trim().slice(0,20);
+  store.set('aura_name', playerName);
+  deck = buildDeck(); idx = 0; guesses = []; points = [];
+  show('game'); showRound();
+}
+function renderProgress(){
+  $('progress').innerHTML = Array.from({length:ROUNDS},(_,i)=>`<i class="${i<idx?'done':i===idx?'now':''}"></i>`).join('');
+}
+function showRound(){
+  const s = deck[idx];
+  $('roundLbl').textContent = tx('game.round', {n:bn(idx+1), total:bn(ROUNDS)});
+  $('scoreLbl').textContent = bn(points.reduce((a,b)=>a+b,0));
+  renderProgress();
+  $('sEmo').textContent = s.e;
+  $('sChip').textContent = tx('game.situation', {n:bn(idx+1)});
+  $('sText').textContent = s.t;
+  $('slider').value = 0; $('slider').disabled = false;
+  updateLive(0);
+  $('inputPanel').style.display = 'block';
+  $('reveal').classList.remove('show');
+  $('scard').classList.toggle('tilt-l', idx%2===0);
+  $('scard').classList.toggle('tilt-r', idx%2===1);
+}
+function labelFor(v){
+  if (v>=7000) return tx('level.peak');
+  if (v>=3000) return tx('level.up');
+  if (v>=500)  return tx('level.slightUp');
+  if (v>-500)  return tx('level.neutral');
+  if (v>-3000) return tx('level.slightDown');
+  if (v>-7000) return tx('level.down');
+  return tx('level.collapse');
+}
+function updateLive(v){
+  v = +v;
+  const cls = v>=500 ? 'pos' : v<=-500 ? 'neg' : 'neu';
+  const n = $('liveNum');
+  n.textContent = bn(v,true); n.className = 'num '+cls;
+  $('liveLbl').textContent = labelFor(v);
+}
+$('slider').addEventListener('input', e => updateLive(e.target.value));
+
+function verdictFor(diff){
+  if (diff<=500)  return ['exact', 'var(--yellow)'];
+  if (diff<=1500) return ['close', 'var(--green)'];
+  if (diff<=3000) return ['ok',    'var(--blue)'];
+  if (diff<=6000) return ['off',   'var(--pink)'];
+  return ['far', 'var(--red)'];
+}
+function lock(){
+  const s = deck[idx], v = +$('slider').value;
+  const diff = Math.abs(v - s.a);
+  const pts = Math.max(0, Math.round(1000 - diff/10));
+  guesses.push(v); points.push(pts);
+  if (navigator.vibrate) try{ navigator.vibrate(diff<=1500?[30,40,30]:60); }catch(e){}
+  $('slider').disabled = true;
+  $('inputPanel').style.display = 'none';
+
+  const [vk, col] = verdictFor(diff);
+  const b = $('burst');
+  b.innerHTML = burstSVG(getComputedStyle(document.documentElement).getPropertyValue(col.slice(4,-1)).trim() || '#ffd23f')
+    + `<div class="sfx"><div>${tx('sfx.'+vk)}<small>${tx('reveal.points',{n:bn(pts)})}</small></div></div>`;
+  b.style.animation='none'; b.offsetHeight; b.style.animation='';
+
+  const pct = x => ((x+10000)/200)+'%';
+  $('mkYou').style.left = '50%'; $('mkCrowd').style.left = '50%';
+  $('reveal').classList.add('show');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    $('mkYou').style.left = pct(v); $('mkCrowd').style.left = pct(s.a);
+  }));
+  $('youVal').textContent = bn(v,true);
+  $('crowdVal').textContent = bn(s.a,true);
+  $('verdict').textContent = tx('verdict.'+vk);
+  $('roast').textContent = s.r;
+  $('nextBtn').textContent = idx===ROUNDS-1 ? tx('reveal.finish') : tx('reveal.next');
+  $('scoreLbl').textContent = bn(points.reduce((a,b)=>a+b,0));
+  setTimeout(()=>$('reveal').scrollIntoView({behavior:'smooth', block:'nearest'}), 120);
+}
+function next(){ idx++; if (idx < ROUNDS) showRound(); else finish(); }
+
+function finish(){
+  const total = points.reduce((a,b)=>a+b,0);
+  const pi = PERSONAS.findIndex(x => total >= x[0]);
+  const p = PERSONAS[pi];
+  const diffs = deck.map((s,i)=>Math.abs(guesses[i]-s.a));
+  const bi = diffs.indexOf(Math.min(...diffs)), wi = diffs.indexOf(Math.max(...diffs));
+
+  /* meme for this result */
+  const options = MEMES[pi] || MEMES[MEMES.length-1];
+  const m = options[Math.floor(Math.random()*options.length)];
+  const memeEl = $('meme');
+  memeEl.className = 'meme m' + Math.min(pi,4);
+  $('memeTop').textContent = m.top;
+  $('memeBottom').textContent = m.bottom;
+  const scene = $('memeScene');
+  scene.textContent = '';
+  if (m.img){ const im = new Image(); im.src = m.img; im.alt = ''; im.crossOrigin = 'anonymous'; scene.appendChild(im); }
+  else scene.textContent = m.scene;
+
+  $('rEmo').textContent = p[1]; $('rPersona').textContent = p[2]; $('rDesc').textContent = p[3];
+  $('rScore').textContent = bn(total);
+  $('rBest').textContent = tx('result.bestDetail', {t:short(deck[bi].t), d:bn(diffs[bi])});
+  $('rWorst').textContent = tx('result.worstDetail', {t:short(deck[wi].t), d:bn(diffs[wi])});
+  $('rName').textContent = playerName || '';
+  $('rUrl').textContent = tx('result.playToo', {url:SITE_URL});
+  const st = bumpStreak(); renderStreak();
+  $('rStreak').textContent = tx('result.streak', {n:bn(st)});
+  const dr = $('duelResult');
+  if (duel){
+    dr.hidden = false;
+    dr.textContent = total > duel.s ? tx('duel.win', {name:duel.n, d:bn(total-duel.s)})
+                   : total < duel.s ? tx('duel.lose', {name:duel.n, d:bn(duel.s-total)})
+                   : tx('duel.draw');
+  } else dr.hidden = true;
+  window._last = {total, ids: deck.map(s=>s.id), persona:p[2]};
+  show('result');
+}
+
+/* ================================================================
+   SHARING
+   ================================================================ */
+async function shareImage(){
+  if (!window.html2canvas){ toast(tx('toast.loading')); return; }
+  const btn = $('shareImgBtn'); btn.disabled = true; btn.textContent = tx('share.generating');
+  try{
+    if (document.fonts && document.fonts.ready) await document.fonts.ready;
+    const bg = getComputedStyle(document.body).backgroundColor;
+    const canvas = await html2canvas($('shareCard'), {scale:3, backgroundColor:bg, useCORS:true});
+    const blob = await new Promise(r => canvas.toBlob(r,'image/png'));
+    const file = new File([blob], 'aura-farming.png', {type:'image/png'});
+    if (navigator.canShare && navigator.canShare({files:[file]})){
+      await navigator.share({files:[file], title:tx('brand.name'), text:tx('share.storyText', {persona:window._last.persona, url:SITE_URL})});
+    } else {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob); a.download = 'aura-farming.png'; a.click();
+      setTimeout(()=>URL.revokeObjectURL(a.href), 4000);
+      toast(tx('toast.downloaded'));
+    }
+  }catch(e){
+    if (e && e.name !== 'AbortError') toast(tx('toast.error'));
+  }finally{
+    btn.disabled = false; btn.textContent = tx('share.story');
+  }
+}
+function duelLink(){
+  const {total, ids} = window._last;
+  const base = location.origin && location.origin !== 'null' ? location.origin + location.pathname : 'https://' + SITE_URL + '/';
+  return `${base}?d=${ids.join('-')}&s=${total}&n=${encodeURIComponent(playerName || tx('duel.defaultName'))}`;
+}
+async function challenge(){
+  const url = duelLink();
+  const text = tx('share.challengeText', {s:bn(window._last.total)});
+  try{
+    if (navigator.share){ await navigator.share({title:tx('share.challengeTitle'), text, url}); return; }
+  }catch(e){ if (e && e.name==='AbortError') return; }
+  try{ await navigator.clipboard.writeText(text+' '+url); toast(tx('toast.copied')); }
+  catch(e){ prompt(tx('toast.copyPrompt'), url); }
+}
+function fbShare(){
+  window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(duelLink()), '_blank', 'noopener,width=600,height=500');
+}
+function replay(){
+  duel = null;
+  try{ history.replaceState(null,'',location.pathname); }catch(e){}
+  $('duelBanner').hidden = true;
+  $('startBtn').textContent = tx('landing.start');
+  start();
+}
+$('startBtn').onclick = start;
+$('lockBtn').onclick = lock;
+$('nextBtn').onclick = next;
+$('shareImgBtn').onclick = shareImage;
+$('challengeBtn').onclick = challenge;
+$('fbBtn').onclick = fbShare;
+$('replayBtn').onclick = replay;
+</script>
+</body>
+</html>
